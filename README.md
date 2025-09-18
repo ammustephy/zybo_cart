@@ -100,4 +100,38 @@ Functionality:
 
 Screenshot: ![Profile](https://github.com/user-attachments/assets/cb02ff7b-8037-4a83-923a-067b548ceca5)
 
+# State Management with BLoC
+
+* The app uses the BLoC pattern for state management, ensuring:
+* Separation of Concerns: Business logic is isolated from UI.
+* Reusability: BLoCs are modular and reusable across pages.
+* Testability: BLoCs are unit-testable with bloc_test.
+* Scalability: Easy to add new features without modifying existing logic.
+
+### Each page has a dedicated BLoC:
+
+* AuthBloc: Manages login, OTP verification, and name registration.
+* HomeBloc: Handles product listing, search, and banner fetching.
+* WishlistBloc: Manages wishlist fetching and add/remove actions.
+* ProfileBloc: Fetches and displays user profile data.
+
+# API Integration
+
+The app integrates with the following APIs, using the http package and passing the Bearer token in headers where required:
+1. POST /api/verify/: Sends phone number to receive OTP and token.
+2. POST /api/login-register/: Registers user with phone number and name, returns updated token.
+3. POST /api/search/?query={query}: Filters products based on search query.
+4. GET /api/products/: Fetches popular products for the home page.
+5. GET /api/banners/: Fetches banners for the carousel slider.
+6. GET /api/wishlist/: Fetches wishlisted products.
+7. POST /api/add-remove-wishlist/: Adds or removes a product from the wishlist.
+8.GET /user-data/: Fetches user profile data (name and phone number).
+
+* Error Handling: Displays user-friendly error messages for network failures, invalid responses, or expired tokens.
+* Token Management: Stores the JWT token securely using shared_preferences and includes it in headers for authenticated requests.
+
+# Conclusion
+
+This Flutter e-commerce application, built with the BLoC pattern for state management, successfully delivers a seamless and responsive user experience while adhering to the provided UI design and API integration requirements. The app features a well-structured flow, starting with a visually appealing splash screen, followed by a robust authentication process (login, OTP verification, and name entry), and culminating in a feature-rich home page with product browsing, search, wishlist management, and user profile display. The use of separate BLoCs (AuthBloc, HomeBloc, WishlistBloc, ProfileBloc) ensures clean separation of concerns, making the codebase maintainable, testable, and scalable.
+The UI is pixel-perfect, matching the specified design for each screen, and leverages MediaQuery to ensure responsiveness across various device sizes, preventing overflow or overlap issues. API integrations are robust, with proper handling of JWT tokens, error states, and data persistence using shared_preferences. The bottom navigation bar provides intuitive access to Home, Wishlist, and Profile sections, while the wishlist functionality and product grid (with images, prices, ratings, and toggle icons) enhance user engagement.
 
